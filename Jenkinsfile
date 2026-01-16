@@ -16,7 +16,7 @@ pipeline {
 
                 docker build -t blogging-app .
 
-                docker rm -f blogging-app || true
+                docker rm -f blogging-app
 
                 docker run -d -p 8080:80 --name blogging-app blogging-app
                 '''
