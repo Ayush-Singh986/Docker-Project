@@ -1,56 +1,30 @@
 pipeline {
     agent any
 
-    environment {
-        IMAGE_NAME = "blogging-app"
-        CONTAINER_NAME = "blogging-app-container"
-    }
-
     stages {
 
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
                 git branch: 'main',
                     url: 'https://github.com/Ayush-Singh986/Docker-Project.git'
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                sh 'docker build -t $IMAGE_NAME .'
-            }
-        }
-
-        stage('Stop Old Container') {
+        stage('Build & Run') {
             steps {
                 sh '''
-                if [ $(docker ps -aq -f name=$CONTAINER_NAME) ]; then
-                    docker stop $CONTAINER_NAME
-                    docker rm $CONTAINER_NAME
+                if ! command -v docker >/dev/null 2>&1; then
+                  echo "Docker not found. Install Docker and give Jenkins access to it."
+                  exit 1
                 fi
+
+                docker build -t blogging-app .
+
+                docker rm -f blogging-app || true
+
+                docker run -d -p 8080:80 --name blogging-app blogging-app
                 '''
             }
-        }
-
-        stage('Run New Container') {
-            steps {
-                sh '''
-                docker run -d \
-                --name $CONTAINER_NAME \
-                -p 8080:80 \
-                $IMAGE_NAME
-                '''
-            }
-        }
-    }
-
-    post {
-        success {
-            echo 'Deployment Successful!'
-        }
-        failure {
-            echo 'Deployment Failed!'
         }
     }
 }
-
