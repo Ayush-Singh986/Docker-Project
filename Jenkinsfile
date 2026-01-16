@@ -13,10 +13,6 @@ pipeline {
         stage('Build & Run') {
             steps {
                 sh '''
-                if ! command -v docker >/dev/null 2>&1; then
-                  echo "Docker not found. Install Docker and give Jenkins access to it."
-                  exit 1
-                fi
 
                 docker build -t blogging-app .
 
