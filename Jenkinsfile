@@ -11,7 +11,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/YOUR_USERNAME/YOUR_REPO.git'
+                    url: 'https://github.com/Ayush-Singh986/Docker-Project.git'
             }
         }
 
@@ -46,10 +46,10 @@ pipeline {
 
     post {
         success {
-            echo '✅ Deployment Successful!'
+            echo 'Deployment Successful!'
         }
         failure {
-            echo '❌ Deployment Failed!'
+            echo 'Deployment Failed!'
         }
     }
 }
