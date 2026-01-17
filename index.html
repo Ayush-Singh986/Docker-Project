@@ -14,7 +14,7 @@
 }
 
 body {
-    background-color: #f4f6f8;
+    background: #f4f6f8;
     color: #333;
 }
 
@@ -29,36 +29,26 @@ header {
 /* NAV */
 nav {
     background: #334155;
-    padding: 10px 20px;
+    padding: 10px;
 }
 nav ul {
     list-style: none;
     display: flex;
-    gap: 20px;
     justify-content: center;
+    gap: 20px;
 }
-nav ul li a {
+nav a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
 }
-nav ul li a:hover {
-    color: #93c5fd;
-}
 
 /* HERO */
 .hero {
-    background: linear-gradient(to right, #6366f1, #3b82f6);
+    background: linear-gradient(135deg, #6366f1, #3b82f6);
     color: #fff;
     padding: 70px 20px;
     text-align: center;
-}
-.hero h2 {
-    font-size: 38px;
-}
-.hero p {
-    font-size: 18px;
-    margin-top: 10px;
 }
 
 /* FEATURED */
@@ -72,28 +62,29 @@ nav ul li a:hover {
 }
 .featured-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 20px;
 }
-.featured-card {
+.card {
+    background: #f1f5f9;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     transition: transform 0.3s;
 }
-.featured-card:hover {
-    transform: translateY(-5px);
+.card:hover {
+    transform: translateY(-6px);
 }
-.featured-card img {
+.card img {
     width: 100%;
     height: 180px;
     object-fit: cover;
+    background: #cbd5e1;
 }
-.featured-card div {
+.card div {
     padding: 15px;
 }
 
-/* MAIN CONTENT */
+/* MAIN */
 .container {
     display: grid;
     grid-template-columns: 3fr 1fr;
@@ -102,14 +93,10 @@ nav ul li a:hover {
 }
 
 /* POSTS */
-.posts {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
 .post {
     background: #fff;
     border-radius: 8px;
+    margin-bottom: 20px;
     overflow: hidden;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
@@ -117,17 +104,14 @@ nav ul li a:hover {
     width: 100%;
     height: 220px;
     object-fit: cover;
+    background: #cbd5e1;
 }
 .post-content {
     padding: 20px;
 }
-.post h3 {
-    color: #1e293b;
-}
 .meta {
     font-size: 14px;
     color: #666;
-    margin: 8px 0;
 }
 
 /* SIDEBAR */
@@ -136,21 +120,16 @@ nav ul li a:hover {
     padding: 20px;
     border-radius: 8px;
     height: fit-content;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-.sidebar h4 {
-    margin-bottom: 15px;
 }
 .sidebar button {
-    display: block;
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: none;
-    border-radius: 5px;
     background: #3b82f6;
     color: #fff;
     cursor: pointer;
+    border-radius: 5px;
 }
 .sidebar button:hover {
     background: #2563eb;
@@ -162,10 +141,11 @@ footer {
     color: #fff;
     text-align: center;
     padding: 20px;
+    margin-top: 30px;
 }
 
 /* RESPONSIVE */
-@media (max-width: 768px) {
+@media(max-width: 768px) {
     .container {
         grid-template-columns: 1fr;
     }
@@ -189,32 +169,32 @@ footer {
 
 <section class="hero">
     <h2>Welcome to My Blog</h2>
-    <p>Discover stories, tutorials, and experiences</p>
+    <p>Share ideas, stories, and knowledge</p>
 </section>
 
-<!-- FEATURED SECTION -->
+<!-- FEATURED -->
 <section class="featured">
-    <h2>Featured Blogs</h2>
+    <h2>Featured Posts</h2>
     <div class="featured-grid">
-        <div class="featured-card">
-            <img src="https://source.unsplash.com/600x400/?technology" />
+        <div class="card">
+            <img src="images/tech.jpg" onerror="this.style.display='none'">
             <div>
-                <h3>Tech Trends 2026</h3>
-                <p>Latest technology insights and innovations.</p>
+                <h3>Technology</h3>
+                <p>Cloud, DevOps & AI trends</p>
             </div>
         </div>
-        <div class="featured-card">
-            <img src="https://source.unsplash.com/600x400/?travel" />
+        <div class="card">
+            <img src="images/travel.jpg" onerror="this.style.display='none'">
             <div>
-                <h3>Travel Diaries</h3>
-                <p>Explore amazing destinations worldwide.</p>
+                <h3>Travel</h3>
+                <p>Journeys and experiences</p>
             </div>
         </div>
-        <div class="featured-card">
-            <img src="https://source.unsplash.com/600x400/?coding" />
+        <div class="card">
+            <img src="images/coding.jpg" onerror="this.style.display='none'">
             <div>
-                <h3>Developer Life</h3>
-                <p>Code, deploy, and scale applications.</p>
+                <h3>Coding</h3>
+                <p>Build, deploy, repeat</p>
             </div>
         </div>
     </div>
@@ -222,30 +202,28 @@ footer {
 
 <main class="container">
 
-<section class="posts" id="posts">
-
-    <article class="post" data-category="tech">
-        <img src="https://source.unsplash.com/800x500/?cloud,aws" />
+<section id="posts">
+    <article class="post" data-cat="tech">
+        <img src="images/tech.jpg" onerror="this.style.display='none'">
         <div class="post-content">
             <h3>Cloud Computing Basics</h3>
-            <div class="meta">By Admin | Jan 16, 2026</div>
-            <p>Learn cloud fundamentals and DevOps tools.</p>
+            <div class="meta">Jan 16, 2026</div>
+            <p>Learn AWS, Docker, and DevOps fundamentals.</p>
         </div>
     </article>
 
-    <article class="post" data-category="travel">
-        <img src="https://source.unsplash.com/800x500/?mountains" />
+    <article class="post" data-cat="travel">
+        <img src="images/travel.jpg" onerror="this.style.display='none'">
         <div class="post-content">
-            <h3>Mountain Adventures</h3>
-            <div class="meta">By John | Jan 15, 2026</div>
-            <p>Experience breathtaking mountain journeys.</p>
+            <h3>Travel Diaries</h3>
+            <div class="meta">Jan 15, 2026</div>
+            <p>Explore the beauty of nature and cities.</p>
         </div>
     </article>
-
 </section>
 
 <aside class="sidebar">
-    <h4>Filter Categories</h4>
+    <h4>Filter</h4>
     <button onclick="filterPosts('all')">All</button>
     <button onclick="filterPosts('tech')">Technology</button>
     <button onclick="filterPosts('travel')">Travel</button>
@@ -258,13 +236,9 @@ footer {
 </footer>
 
 <script>
-function filterPosts(category) {
-    const posts = document.querySelectorAll('.post');
-    posts.forEach(post => {
-        post.style.display =
-            category === 'all' || post.dataset.category === category
-            ? 'block'
-            : 'none';
+function filterPosts(cat) {
+    document.querySelectorAll('.post').forEach(p => {
+        p.style.display = (cat === 'all' || p.dataset.cat === cat) ? 'block' : 'none';
     });
 }
 </script>
