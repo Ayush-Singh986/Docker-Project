@@ -30,13 +30,14 @@ pipeline {
         }
 
         stage('Run Container') {
-            steps {
-                sh '''
-                docker rm -f blogging-app
-                docker run -d -p 8080:80 --name blogging-app blogging-app
-                '''
-            }
-        }
+    steps {
+        sh '''
+        docker rm -f blogging-app || true
+        docker run -d -p 8081:80 --name blogging-app blogging-app
+        '''
+    }
+}
+
 
         stage('Docker Push') {
             steps {
