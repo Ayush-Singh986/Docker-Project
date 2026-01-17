@@ -1,232 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Blogging App</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Blogging App</title>
 
-    <style>
-        /* ===== RESET ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-        body {
-            background-color: #f4f6f8;
-            color: #333;
-        }
+body {
+    background-color: #f4f6f8;
+    color: #333;
+}
 
-        /* ===== HEADER LAYER ===== */
-        header {
-            background: #1e293b;
-            color: #fff;
-            padding: 20px;
-        }
+/* HEADER */
+header {
+    background: #1e293b;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
 
-        header h1 {
-            font-size: 28px;
-        }
+/* NAV */
+nav {
+    background: #334155;
+    padding: 10px 20px;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+nav ul li a:hover {
+    color: #93c5fd;
+}
 
-        /* ===== NAVIGATION LAYER ===== */
-        nav {
-            background: #334155;
-            padding: 10px 20px;
-        }
+/* HERO */
+.hero {
+    background: linear-gradient(to right, #6366f1, #3b82f6);
+    color: #fff;
+    padding: 70px 20px;
+    text-align: center;
+}
+.hero h2 {
+    font-size: 38px;
+}
+.hero p {
+    font-size: 18px;
+    margin-top: 10px;
+}
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
+/* FEATURED */
+.featured {
+    padding: 40px 20px;
+    background: #fff;
+}
+.featured h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+.featured-card {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+.featured-card:hover {
+    transform: translateY(-5px);
+}
+.featured-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+.featured-card div {
+    padding: 15px;
+}
 
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
+/* MAIN CONTENT */
+.container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 20px;
+    padding: 30px 20px;
+}
 
-        nav ul li a:hover {
-            text-decoration: underline;
-        }
+/* POSTS */
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.post {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.post img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+.post-content {
+    padding: 20px;
+}
+.post h3 {
+    color: #1e293b;
+}
+.meta {
+    font-size: 14px;
+    color: #666;
+    margin: 8px 0;
+}
 
-        /* ===== HERO SECTION (TOP LAYER) ===== */
-        .hero {
-            background: linear-gradient(to right, #6366f1, #3b82f6);
-            color: #fff;
-            padding: 60px 20px;
-            text-align: center;
-        }
+/* SIDEBAR */
+.sidebar {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    height: fit-content;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.sidebar h4 {
+    margin-bottom: 15px;
+}
+.sidebar button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #3b82f6;
+    color: #fff;
+    cursor: pointer;
+}
+.sidebar button:hover {
+    background: #2563eb;
+}
 
-        .hero h2 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
+/* FOOTER */
+footer {
+    background: #1e293b;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
 
-        .hero p {
-            font-size: 18px;
-        }
-
-        /* ===== MAIN CONTENT LAYER ===== */
-        .container {
-            display: grid;
-            grid-template-columns: 3fr 1fr;
-            gap: 20px;
-            padding: 30px 20px;
-        }
-
-        /* ===== BLOG POSTS SECTION ===== */
-        .posts {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .post {
-            background: #fff;
-            padding: 20px;
-            border-radius: 6px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .post h3 {
-            margin-bottom: 10px;
-            color: #1e293b;
-        }
-
-        .post p {
-            line-height: 1.6;
-        }
-
-        .post .meta {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 10px;
-        }
-
-        /* ===== SIDEBAR LAYER ===== */
-        .sidebar {
-            background: #fff;
-            padding: 20px;
-            border-radius: 6px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            height: fit-content;
-        }
-
-        .sidebar h4 {
-            margin-bottom: 15px;
-            color: #1e293b;
-        }
-
-        .sidebar ul {
-            list-style: none;
-        }
-
-        .sidebar ul li {
-            margin-bottom: 10px;
-        }
-
-        .sidebar ul li a {
-            text-decoration: none;
-            color: #3b82f6;
-        }
-
-        /* ===== FOOTER LAYER ===== */
-        footer {
-            background: #1e293b;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
-
-        footer p {
-            font-size: 14px;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-    </style>
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- ===== HEADER ===== -->
-    <header>
-        <h1>My Blogging App</h1>
-    </header>
+<header>
+    <h1>My Blogging App</h1>
+</header>
 
-    <!-- ===== NAVBAR ===== -->
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Blogs</a></li>
-            <li><a href="#">Categories</a></li>
-            <li><a href="#">About</a></li>
-        </ul>
-    </nav>
+<nav>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Blogs</a></li>
+        <li><a href="#">About</a></li>
+    </ul>
+</nav>
 
-    <!-- ===== HERO SECTION ===== -->
-    <section class="hero">
-        <h2>Welcome to My Blog</h2>
-        <p>Read, write, and share your thoughts with the world</p>
-    </section>
+<section class="hero">
+    <h2>Welcome to My Blog</h2>
+    <p>Discover stories, tutorials, and experiences</p>
+</section>
 
-    <!-- ===== MAIN CONTENT ===== -->
-    <main class="container">
+<!-- FEATURED SECTION -->
+<section class="featured">
+    <h2>Featured Blogs</h2>
+    <div class="featured-grid">
+        <div class="featured-card">
+            <img src="https://source.unsplash.com/600x400/?technology" />
+            <div>
+                <h3>Tech Trends 2026</h3>
+                <p>Latest technology insights and innovations.</p>
+            </div>
+        </div>
+        <div class="featured-card">
+            <img src="https://source.unsplash.com/600x400/?travel" />
+            <div>
+                <h3>Travel Diaries</h3>
+                <p>Explore amazing destinations worldwide.</p>
+            </div>
+        </div>
+        <div class="featured-card">
+            <img src="https://source.unsplash.com/600x400/?coding" />
+            <div>
+                <h3>Developer Life</h3>
+                <p>Code, deploy, and scale applications.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-        <!-- BLOG POSTS -->
-        <section class="posts">
+<main class="container">
 
-            <article class="post">
-                <h3>First Blog Post</h3>
-                <div class="meta">By Admin | Jan 16, 2026</div>
-                <p>
-                    This is a sample blog post. You can write about technology,
-                    lifestyle, travel, or anything you love.
-                </p>
-            </article>
+<section class="posts" id="posts">
 
-            <article class="post">
-                <h3>Another Amazing Post</h3>
-                <div class="meta">By John Doe | Jan 15, 2026</div>
-                <p>
-                    Blogging apps help users express ideas and share knowledge.
-                    This layout supports multiple sections and layers.
-                </p>
-            </article>
+    <article class="post" data-category="tech">
+        <img src="https://source.unsplash.com/800x500/?cloud,aws" />
+        <div class="post-content">
+            <h3>Cloud Computing Basics</h3>
+            <div class="meta">By Admin | Jan 16, 2026</div>
+            <p>Learn cloud fundamentals and DevOps tools.</p>
+        </div>
+    </article>
 
-        </section>
+    <article class="post" data-category="travel">
+        <img src="https://source.unsplash.com/800x500/?mountains" />
+        <div class="post-content">
+            <h3>Mountain Adventures</h3>
+            <div class="meta">By John | Jan 15, 2026</div>
+            <p>Experience breathtaking mountain journeys.</p>
+        </div>
+    </article>
 
-        <!-- SIDEBAR -->
-        <aside class="sidebar">
-            <h4>Categories</h4>
-            <ul>
-                <li><a href="#">Technology</a></li>
-                <li><a href="#">Lifestyle</a></li>
-                <li><a href="#">Travel</a></li>
-                <li><a href="#">Education</a></li>
-            </ul>
-        </aside>
+</section>
 
-    </main>
+<aside class="sidebar">
+    <h4>Filter Categories</h4>
+    <button onclick="filterPosts('all')">All</button>
+    <button onclick="filterPosts('tech')">Technology</button>
+    <button onclick="filterPosts('travel')">Travel</button>
+</aside>
 
-    <!-- ===== FOOTER ===== -->
-    <footer>
-        <p>&copy; 2026 My Blogging App. All rights reserved.</p>
-    </footer>
+</main>
+
+<footer>
+    <p>&copy; 2026 My Blogging App</p>
+</footer>
+
+<script>
+function filterPosts(category) {
+    const posts = document.querySelectorAll('.post');
+    posts.forEach(post => {
+        post.style.display =
+            category === 'all' || post.dataset.category === category
+            ? 'block'
+            : 'none';
+    });
+}
+</script>
 
 </body>
 </html>
-
