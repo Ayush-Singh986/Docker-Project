@@ -10,19 +10,6 @@ pipeline {
             }
         }
 
-        stage('Docker Login') {
-    steps {
-        withCredentials([usernamePassword(
-            credentialsId: 'docker-cred',
-            usernameVariable: 'USER',
-            passwordVariable: 'PASS'
-        )]) {
-            sh 'echo $PASS | docker login -u $USER --password-stdin'
-        }
-    }
-}
-
-
         stage('Build Image') {
             steps {
                 sh 'docker build -t blogging-app .'
@@ -30,23 +17,26 @@ pipeline {
         }
 
         stage('Run Container') {
-    steps {
-        sh '''
-        docker rm -f blogging-app || true
-        docker run -d -p 8081:80 --name blogging-app blogging-app
-        '''
-    }
-}
+            steps {
+                sh '''
+                docker rm -f blogging-app
+                docker run -d -p 8081:80 --name blogging-app blogging-app
+                '''
+            }
+        }
 
-
-        stage('Docker Push') {
-    steps {
-        sh '''
-        docker tag blogging-app ayushsingh986/blogging-app:latest
-        docker push ayushsingh986/blogging-app:latest
-        '''
-    }
-}
-
+        stage('Docker Login & Push') {
+            steps {
+                withDockerRegistry(
+                    credentialsId: 'docker-cred',
+                    url: 'https://index.docker.io/v1/'
+                ) {
+                    sh '''
+                    docker tag blogging-app ayushsingh986/blogging-app:latest
+                    docker push ayushsingh986/blogging-app:latest
+                    '''
+                }
+            }
+        }
     }
 }
