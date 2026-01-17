@@ -40,12 +40,13 @@ pipeline {
 
 
         stage('Docker Push') {
-            steps {
-                sh '''
-                docker tag blogging-app ayushsingh986/blogging-app
-                docker push ayushsingh986/blogging-app
-                '''
-            }
-        }
+    steps {
+        sh '''
+        docker tag blogging-app ayushsingh986/blogging-app:latest
+        docker push ayushsingh986/blogging-app:latest
+        '''
+    }
+}
+
     }
 }
