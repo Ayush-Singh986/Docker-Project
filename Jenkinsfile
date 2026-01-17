@@ -19,21 +19,21 @@ pipeline {
         stage('Run Container') {
             steps {
                 sh '''
-                docker rm -f blogging-app
+                docker rm -f blogging-app || true
                 docker run -d -p 8081:80 --name blogging-app blogging-app
                 '''
             }
         }
 
-        stage('Docker Login & Push') {
+        stage('Docker Push') {
             steps {
                 withDockerRegistry(
                     credentialsId: 'docker-cred',
                     url: 'https://index.docker.io/v1/'
                 ) {
                     sh '''
-                    docker tag blogging-app ayushsingh986/blogging-app:latest
-                    docker push ayushsingh986/blogging-app:latest
+                    docker tag blogging-app ayush244/blogging-app:latest
+                    docker push ayush244/blogging-app:latest
                     '''
                 }
             }
