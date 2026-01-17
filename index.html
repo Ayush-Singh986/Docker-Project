@@ -3,152 +3,141 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Blogging App</title>
+<title>Student Dashboard</title>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+:root{
+    --color-primary:#7380ec;
+    --color-danger:#ff7782;
+    --color-white:#fff;
+    --color-light:#f6f6f9;
+    --color-dark:#363949;
+    --border-radius-1:8px;
+    --border-radius-2:12px;
+    --box-shadow:0 2rem 3rem rgba(0,0,0,0.1);
 }
 
-body {
-    background: #f4f6f8;
-    color: #333;
+*{
+    margin:0;padding:0;box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
-/* HEADER */
-header {
-    background: #1e293b;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
+body{
+    background:var(--color-light);
+    color:var(--color-dark);
 }
 
-/* NAV */
-nav {
-    background: #334155;
-    padding: 10px;
-}
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-nav a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem 2rem;
+    background:var(--color-white);
+    box-shadow:var(--box-shadow);
 }
 
-/* HERO */
-.hero {
-    background: linear-gradient(135deg, #6366f1, #3b82f6);
-    color: #fff;
-    padding: 70px 20px;
-    text-align: center;
+.logo{
+    display:flex;
+    align-items:center;
+    gap:.5rem;
+}
+.logo img{width:40px;}
+.danger{color:var(--color-danger);}
+
+.navbar{
+    display:flex;
+    gap:1.5rem;
+}
+.navbar a{
+    display:flex;
+    align-items:center;
+    gap:.4rem;
+    cursor:pointer;
+    color:var(--color-dark);
+    text-decoration:none;
+}
+.navbar a.active,
+.navbar a:hover{
+    color:var(--color-primary);
 }
 
-/* FEATURED */
-.featured {
-    padding: 40px 20px;
-    background: #fff;
-}
-.featured h2 {
-    text-align: center;
-    margin-bottom: 30px;
-}
-.featured-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-}
-.card {
-    background: #f1f5f9;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.3s;
-}
-.card:hover {
-    transform: translateY(-6px);
-}
-.card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    background: #cbd5e1;
-}
-.card div {
-    padding: 15px;
+.theme-toggler span{
+    cursor:pointer;
 }
 
-/* MAIN */
-.container {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    gap: 20px;
-    padding: 30px 20px;
+.container{
+    padding:2rem;
 }
 
-/* POSTS */
-.post {
-    background: #fff;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-.post img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    background: #cbd5e1;
-}
-.post-content {
-    padding: 20px;
-}
-.meta {
-    font-size: 14px;
-    color: #666;
+.page{display:none;}
+.page.active{display:block;}
+
+.subjects{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:1.5rem;
 }
 
-/* SIDEBAR */
-.sidebar {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    height: fit-content;
+.subjects div{
+    background:var(--color-white);
+    padding:1.5rem;
+    border-radius:var(--border-radius-2);
+    box-shadow:var(--box-shadow);
+    transition:.3s;
 }
-.sidebar button {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: none;
-    background: #3b82f6;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 5px;
+.subjects div:hover{box-shadow:none;}
+.subjects span{font-size:2rem;color:var(--color-primary);}
+
+table{
+    width:100%;
+    background:var(--color-white);
+    margin-top:1rem;
+    border-radius:var(--border-radius-2);
+    overflow:hidden;
+    box-shadow:var(--box-shadow);
 }
-.sidebar button:hover {
-    background: #2563eb;
+th,td{
+    padding:1rem;
+    text-align:left;
+}
+thead{background:var(--color-primary);color:#fff;}
+
+.change-password-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:70vh;
+}
+.change-password-container form{
+    background:var(--color-white);
+    padding:2.5rem;
+    width:100%;
+    max-width:400px;
+    border-radius:var(--border-radius-2);
+    box-shadow:var(--box-shadow);
+}
+.change-password-container input{
+    width:100%;
+    padding:.6rem;
+    margin:.6rem 0;
+    border:1px solid #ccc;
+    border-radius:6px;
 }
 
-/* FOOTER */
-footer {
-    background: #1e293b;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    margin-top: 30px;
+.btn{
+    background:var(--color-primary);
+    color:#fff;
+    padding:.6rem 1.2rem;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
 }
-
-/* RESPONSIVE */
-@media(max-width: 768px) {
-    .container {
-        grid-template-columns: 1fr;
-    }
+.btn:hover{
+    background:transparent;
+    border:2px solid var(--color-primary);
+    color:var(--color-primary);
 }
 </style>
 </head>
@@ -156,90 +145,89 @@ footer {
 <body>
 
 <header>
-    <h1>My Blogging App</h1>
+    <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png">
+        <h2>U<span class="danger">M</span>S</h2>
+    </div>
+
+    <div class="navbar">
+        <a class="active" onclick="showPage('home')">
+            <span class="material-icons-sharp">home</span> Home
+        </a>
+        <a onclick="showPage('exam')">
+            <span class="material-icons-sharp">grid_view</span> Examination
+        </a>
+        <a onclick="showPage('password')">
+            <span class="material-icons-sharp">password</span> Change Password
+        </a>
+    </div>
+
+    <div class="theme-toggler">
+        <span class="material-icons-sharp">light_mode</span>
+        <span class="material-icons-sharp">dark_mode</span>
+    </div>
 </header>
 
-<nav>
-    <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Blogs</a></li>
-        <li><a href="#">About</a></li>
-    </ul>
-</nav>
+<div class="container">
 
-<section class="hero">
-    <h2>Welcome to My Blog</h2>
-    <p>Share ideas, stories, and knowledge</p>
-</section>
-
-<!-- FEATURED -->
-<section class="featured">
-    <h2>Featured Posts</h2>
-    <div class="featured-grid">
-        <div class="card">
-            <img src="images/tech.jpg" onerror="this.style.display='none'">
-            <div>
-                <h3>Technology</h3>
-                <p>Cloud, DevOps & AI trends</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="images/travel.jpg" onerror="this.style.display='none'">
-            <div>
-                <h3>Travel</h3>
-                <p>Journeys and experiences</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="images/coding.jpg" onerror="this.style.display='none'">
-            <div>
-                <h3>Coding</h3>
-                <p>Build, deploy, repeat</p>
-            </div>
-        </div>
+<!-- HOME -->
+<section id="home" class="page active">
+<h1>Attendance</h1>
+<div class="subjects">
+    <div>
+        <span class="material-icons-sharp">architecture</span>
+        <h3>Engineering Graphics</h3>
+        <h2>12 / 14</h2>
     </div>
+    <div>
+        <span class="material-icons-sharp">functions</span>
+        <h3>Mathematics</h3>
+        <h2>27 / 29</h2>
+    </div>
+    <div>
+        <span class="material-icons-sharp">computer</span>
+        <h3>Computer Architecture</h3>
+        <h2>27 / 30</h2>
+    </div>
+</div>
 </section>
 
-<main class="container">
-
-<section id="posts">
-    <article class="post" data-cat="tech">
-        <img src="images/tech.jpg" onerror="this.style.display='none'">
-        <div class="post-content">
-            <h3>Cloud Computing Basics</h3>
-            <div class="meta">Jan 16, 2026</div>
-            <p>Learn AWS, Docker, and DevOps fundamentals.</p>
-        </div>
-    </article>
-
-    <article class="post" data-cat="travel">
-        <img src="images/travel.jpg" onerror="this.style.display='none'">
-        <div class="post-content">
-            <h3>Travel Diaries</h3>
-            <div class="meta">Jan 15, 2026</div>
-            <p>Explore the beauty of nature and cities.</p>
-        </div>
-    </article>
+<!-- EXAM -->
+<section id="exam" class="page">
+<h1>Exam Schedule</h1>
+<table>
+<thead>
+<tr><th>Date</th><th>Time</th><th>Subject</th><th>Room</th></tr>
+</thead>
+<tbody>
+<tr><td>13 May 2022</td><td>09–12</td><td>CS200</td><td>38-718</td></tr>
+<tr><td>16 May 2022</td><td>09–12</td><td>DBMS130</td><td>38-718</td></tr>
+<tr><td>18 May 2022</td><td>09–12</td><td>MTH166</td><td>38-718</td></tr>
+</tbody>
+</table>
 </section>
 
-<aside class="sidebar">
-    <h4>Filter</h4>
-    <button onclick="filterPosts('all')">All</button>
-    <button onclick="filterPosts('tech')">Technology</button>
-    <button onclick="filterPosts('travel')">Travel</button>
-</aside>
+<!-- PASSWORD -->
+<section id="password" class="page">
+<div class="change-password-container">
+<form>
+<h2>Create New Password</h2>
+<input type="password" placeholder="Current Password">
+<input type="password" placeholder="New Password">
+<input type="password" placeholder="Confirm Password">
+<button class="btn">Save</button>
+</form>
+</div>
+</section>
 
-</main>
-
-<footer>
-    <p>&copy; 2026 My Blogging App</p>
-</footer>
+</div>
 
 <script>
-function filterPosts(cat) {
-    document.querySelectorAll('.post').forEach(p => {
-        p.style.display = (cat === 'all' || p.dataset.cat === cat) ? 'block' : 'none';
-    });
+function showPage(id){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+
+    document.querySelectorAll('.navbar a').forEach(a=>a.classList.remove('active'));
 }
 </script>
 
